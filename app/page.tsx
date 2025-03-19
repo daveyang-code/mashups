@@ -208,7 +208,7 @@ export default function Home() {
     // Strip IDs from the playlist items as they'll be regenerated on import
     const exportData: ExportedPlaylist = {
       name: playlistName,
-      items: playlist.map(({ id, ...rest }) => rest),
+      items: playlist.map(({ ...rest }) => ({ ...rest })),
     };
 
     const dataStr = JSON.stringify(exportData, null, 2);
@@ -297,8 +297,6 @@ export default function Home() {
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               {/* Video Container - Fixed aspect ratio container */}
               <div className="relative pt-[56.25%] bg-black">
-                {" "}
-                {/* 16:9 aspect ratio = 9/16 = 0.5625 = 56.25% */}
                 {currentVideo ? (
                   <div className="absolute top-0 left-0 w-full h-full">
                     <ReactPlayer
